@@ -1,0 +1,81 @@
+/* Custom styles beyond Tailwind */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+}
+
+/* Animation for buttons */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* Smooth transition for mobile menu */
+#mobile-menu {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Custom placeholder styling */
+img[src^="data:image/svg"] {
+  background-color: #f1f5f9;
+  border-radius: 0.5rem;
+}
+
+/* Custom animation for counters */
+.text-4xl.font-bold.text-emerald-600 {
+  transition: all 0.3s ease;
+}
+
+/* Feature cards styling to match the screenshot */
+.flex.flex-col.items-center.space-y-4.rounded-lg.border.p-6 {
+  border-color: #e5e7eb;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.flex.flex-col.items-center.space-y-4.rounded-lg.border.p-6:hover {
+  border-color: #059669;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Feature icons styling */
+.flex.h-16.w-16.items-center.justify-center.rounded-full.bg-emerald-100 {
+  background-color: #ecfdf5;
+}
+
+.h-6.w-6.text-emerald-600 {
+  color: #059669;
+}
+
+/* Adjust spacing for features section to match screenshot */
+.container.px-4.md\:px-6.mx-auto {
+  max-width: 1200px;
+}
+
+/* Badge styling to match screenshot */
+.inline-flex.items-center.rounded-full.border.px-2\.5.py-0\.5.text-xs.font-semibold {
+  background-color: #059669;
+  color: white;
+  padding: 0.25rem 0.75rem;
+}
+
+/* Heading styling to match screenshot */
+h2.text-3xl.font-bold.tracking-tighter.sm\:text-5xl {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+/* Subtitle styling to match screenshot */
+p.max-w-\[900px\].text-gray-500 {
+  color: #6b7280;
+  margin: 0 auto;
+}
+

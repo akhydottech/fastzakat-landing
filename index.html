@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FastZakat - Simplifiez la distribution de votre Zakat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              600: '#059669',
+              700: '#047857'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="flex min-h-screen flex-col">
+    <header class="px-4 lg:px-6 h-16 flex items-center border-b">
+      <a class="flex items-center justify-center" href="#">
+        <svg class="h-6 w-6 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.29 7 12 12 20.71 7"></polyline>
+          <line x1="12" y1="22" x2="12" y2="12"></line>
+        </svg>
+        <span class="ml-2 text-xl font-bold">FastZakat</span>
+      </a>
+      <nav class="ml-auto hidden md:flex gap-4 sm:gap-6">
+        <a class="text-sm font-medium hover:underline underline-offset-4" href="#">Fonctionnalités</a>
+        <a class="text-sm font-medium hover:underline underline-offset-4" href="#">Comment ça marche</a>
+        <a class="text-sm font-medium hover:underline underline-offset-4" href="#">Témoignages</a>
+        <a class="text-sm font-medium hover:underline underline-offset-4" href="#">Contact</a>
+      </nav>
+      <div class="hidden md:block ml-4">
+        <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-black text-white">
+          Connexion
+        </button>
+      </div>
+      <button id="mobile-menu-button" class="ml-auto md:hidden inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+        <span class="sr-only">Toggle menu</span>
+      </button>
+      <div id="mobile-menu" class="fixed inset-y-0 right-0 z-50 w-full max-w-xs transform translate-x-full bg-white shadow-lg transition-transform duration-300 ease-in-out md:hidden">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-xl font-bold">FastZakat</h2>
+            <button id="close-menu-button" class="rounded-full p-1 hover:bg-gray-100">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <p class="text-sm text-gray-500 mb-6">Application de gestion de Zakat</p>
+          <nav class="flex flex-col gap-4">
+            <a class="text-sm font-medium hover:underline underline-offset-4" href="#">Fonctionnalités</a>
+            <a class="text-sm font-medium hover:underline underline-offset-4" href="#">Comment ça marche</a>
+            <a class="text-sm font-medium hover:underline underline-offset-4" href="#">Témoignages</a>
+            <a class="text-sm font-medium hover:underline underline-offset-4" href="#">Contact</a>
+            <button class="mt-2 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-black text-white">
+              Connexion
+            </button>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="flex-1">
+      <section class="w-full py-12 md:py-24 lg:py-32 bg-emerald-50">
+        <div class="container px-4 md:px-6 mx-auto">
+          <div class="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-2">
+            <div class="flex flex-col justify-center space-y-4">
+              <div class="space-y-2">
+                <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-6xl/none">
+                  Simplifiez la distribution de votre Zakat
+                </h1>
+                <p class="max-w-[600px] text-gray-500 md:text-xl">
+                  FastZakat est une application web qui vous aide à gérer efficacement la distribution des colis de
+                  Zakat, de la collecte à la livraison.
+                </p>
+              </div>
+              <div class="flex flex-col gap-2 sm:flex-row">
+                <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11 px-8 bg-emerald-600 hover:bg-emerald-700 text-white">
+                  Commencer gratuitement
+                </button>
+                <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8">
+                  Voir une démo
+                </button>
+              </div>
+            </div>
+            <div class="flex items-center justify-center">
+              <img
+                src="/dashboard.png"
+                width="550"
+                height="550"
+                alt="FastZakat Dashboard"
+                class="rounded-lg object-cover w-full max-w-[550px] shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full py-12 md:py-24 lg:py-32">
+        <div class="container px-4 md:px-6 mx-auto">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center">
+            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-emerald-600 text-white">
+              Pourquoi choisir FastZakat
+            </div>
+            <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl">Fonctionnalités principales</h2>
+            <p class="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              Notre plateforme offre tous les outils nécessaires pour gérer efficacement vos distributions de Zakat
+            </p>
+          </div>
+          <div class="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3">
+            <div class="flex flex-col items-center space-y-4 rounded-lg border p-6">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-emerald-600">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Gestion des bénéficiaires</h3>
+              <p class="text-center text-gray-500">
+                Créez et gérez facilement une base de données des bénéficiaires avec toutes les informations nécessaires.
+              </p>
+            </div>
+            <div class="flex flex-col items-center space-y-4 rounded-lg border p-6">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-emerald-600">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.29 7 12 12 20.71 7"></polyline>
+                  <line x1="12" y1="22" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Suivi des colis</h3>
+              <p class="text-center text-gray-500">
+                Suivez en temps réel l'état de chaque colis, de la préparation à la livraison finale.
+              </p>
+            </div>
+            <div class="flex flex-col items-center space-y-4 rounded-lg border p-6">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-emerald-600">
+                  <path d="M3 3v18h18"></path>
+                  <path d="M18 17V9"></path>
+                  <path d="M13 17V5"></path>
+                  <path d="M8 17v-3"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">Statistiques détaillées</h3>
+              <p class="text-center text-gray-500">
+                Accédez à des rapports et statistiques pour analyser l'efficacité de vos distributions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+        <div class="container px-4 md:px-6 mx-auto">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center">
+            <div class="space-y-2">
+              <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Comment ça marche</h2>
+              <p class="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Un processus simple en quatre étapes pour gérer efficacement vos distributions
+              </p>
+            </div>
+          </div>
+          <div class="mx-auto grid max-w-5xl items-start gap-6 py-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="flex flex-col items-center space-y-2 border-t pt-6">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-emerald-600">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">1. Enregistrement</h3>
+              <p class="text-center text-gray-500">Créez votre compte et configurez votre organisation</p>
+            </div>
+            <div class="flex flex-col items-center space-y-2 border-t pt-6">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-emerald-600">
+                  <path d="M20 12a8 8 0 0 0-8-8"></path>
+                  <path d="M18 9.79a4 4 0 0 0-2-3.46"></path>
+                  <path d="M12 12V4"></path>
+                  <path d="m7.11 5.7 1.89 1.8"></path>
+                  <path d="M12 12a8 8 0 0 1 8 8"></path>
+                  <path d="M17.73 21.58 18 19"></path>
+                  <path d="M12 12a8 8 0 0 0-8 8"></path>
+                  <path d="M6.27 21.58 6 19"></path>
+                  <path d="M12 12a8 8 0 0 1-8-8"></path>
+                  <path d="M7.11 5.7 5.5 7.5"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">2. Préparation</h3>
+              <p class="text-center text-gray-500">Ajoutez vos bénéficiaires et préparez vos colis</p>
+            </div>
+            <div class="flex flex-col items-center space-y-2 border-t pt-6">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-emerald-600">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">3. Distribution</h3>
+              <p class="text-center text-gray-500">Organisez et suivez la distribution des colis</p>
+            </div>
+            <div class="flex flex-col items-center space-y-2 border-t pt-6">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-emerald-600">
+                  <path d="M3 3v18h18"></path>
+                  <path d="M18 17V9"></path>
+                  <path d="M13 17V5"></path>
+                  <path d="M8 17v-3"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold">4. Analyse</h3>
+              <p class="text-center text-gray-500">
+                Consultez les statistiques et optimisez vos futures distributions
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full py-12 md:py-24 lg:py-32">
+        <div class="container px-4 md:px-6 mx-auto">
+          <div class="grid gap-10 md:px-10 md:gap-16 lg:grid-cols-2">
+            <div class="space-y-4">
+              <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-emerald-600 text-white">
+                Témoignages
+              </div>
+              <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Ils font confiance à FastZakat
+              </h2>
+              <blockquote class="text-lg italic">
+                "Grâce à FastZakat, nous avons pu distribuer plus de 500 colis en un temps record. L'application nous
+                a permis de gagner un temps précieux et d'éviter les erreurs."
+              </blockquote>
+              <div class="flex items-center gap-4">
+                <img
+                  src="/placeholder.svg"
+                  width="40"
+                  height="40"
+                  alt="Avatar"
+                  class="rounded-full"
+                />
+                <div>
+                  <p class="font-semibold">Ahmed Benali</p>
+                  <p class="text-sm text-gray-500">Association Al-Ihsan</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col items-start space-y-4">
+              <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-emerald-600 text-white">
+                Impact
+              </div>
+              <h2 class="text-3xl font-bold tracking-tighter md:text-4xl/tight">Notre impact en chiffres</h2>
+              <div class="grid gap-6 grid-cols-2 sm:grid-cols-2 w-full">
+                <div class="flex flex-col">
+                  <span class="text-4xl font-bold text-emerald-600">+50</span>
+                  <span class="text-gray-500">Organisations</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-4xl font-bold text-emerald-600">+10,000</span>
+                  <span class="text-gray-500">Bénéficiaires</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-4xl font-bold text-emerald-600">+25,000</span>
+                  <span class="text-gray-500">Colis distribués</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-4xl font-bold text-emerald-600">+1,000</span>
+                  <span class="text-gray-500">Heures économisées</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full py-12 md:py-24 lg:py-32 bg-emerald-600 text-white">
+        <div class="container px-4 md:px-6 mx-auto">
+          <div class="flex flex-col items-center justify-center space-y-4 text-center">
+            <div class="space-y-2">
+              <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Prêt à simplifier votre gestion de Zakat?
+              </h2>
+              <p class="max-w-[600px] text-emerald-50 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Rejoignez les centaines d'organisations qui font confiance à FastZakat
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 min-[400px]:flex-row">
+              <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11 px-8 bg-white text-emerald-600 hover:bg-emerald-50">
+                Commencer gratuitement
+              </button>
+              <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11 px-8 border border-white text-emerald-700 hover:bg-emerald-700 hover:text-white">
+                Demander une démo
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="flex flex-col gap-4 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-emerald-600">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.29 7 12 12 20.71 7"></polyline>
+          <line x1="12" y1="22" x2="12" y2="12"></line>
+        </svg>
+        <span class="font-semibold">FastZakat</span>
+      </div>
+      <p class="text-xs text-gray-500 sm:ml-4">
+        &copy; <span id="current-year"></span> FastZakat. Tous droits réservés.
+      </p>
+      <nav class="flex flex-wrap gap-4 sm:ml-auto sm:gap-6">
+        <a class="text-xs hover:underline underline-offset-4" href="#">
+          Conditions d'utilisation
+        </a>
+        <a class="text-xs hover:underline underline-offset-4" href="#">
+          Politique de confidentialité
+        </a>
+        <a class="text-xs hover:underline underline-offset-4" href="#">
+          Contact
+        </a>
+      </nav>
+    </footer>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
+
