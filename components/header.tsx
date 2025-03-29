@@ -23,6 +23,9 @@ const Header = () => {
       <Link className="text-sm font-medium hover:underline underline-offset-4" href="/#how-it-works">
         Comment ça marche
       </Link>
+      <Link className="text-sm font-medium hover:underline underline-offset-4" href="/faq">
+        FAQ
+      </Link>
       <Link className="text-sm font-medium hover:underline underline-offset-4" href="/contact">
         Contact
       </Link>
@@ -51,10 +54,10 @@ const Header = () => {
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
             Comment ça marche
           </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
-            Témoignages
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/faq">
+            FAQ
           </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/contact">
             Contact
           </Link>
           <Button asChild className="mt-2">

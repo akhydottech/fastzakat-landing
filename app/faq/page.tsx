@@ -6,13 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 const faqData = [
   {
     question: "Comment activer le mode organisation ?",
-    answer: (
+    answer: (device: 'desktop' | 'mobile') => (
       <div className="space-y-4">
         <p>Pour activer le mode organisation, suivez ces étapes :</p>
         <video 
           className="w-full rounded-lg shadow-lg"
           controls
-          src="/step_01-activer-mode-organisation.mov"
+          src={`/step_01-activer-mode-organisation${device === 'mobile' ? '_mobile' : ''}.mp4`}
         >
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
@@ -21,14 +21,14 @@ const faqData = [
   },
   {
     question: "Comment inviter un membre déjà inscrit ?",
-    answer: (
+    answer: (device: 'desktop' | 'mobile') => (
       <div className="space-y-4">
         <p>Seul les membres inscrits peuvent être invités.</p>
         <p>Pour inviter un membre déjà inscrit, suivez ces étapes :</p>
         <video 
           className="w-full rounded-lg shadow-lg"
           controls
-          src="/step_02-inviter-un-membre-deja-inscrit.mov"
+          src={`/step_02-inviter-un-membre-deja-inscrit${device === 'mobile' ? '_mobile' : ''}.mp4`}
         >
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
@@ -37,13 +37,13 @@ const faqData = [
   },
   {
     question: "Comment le membre accepte-t-il l'invitation ?",
-    answer: (
+    answer: (device: 'desktop' | 'mobile') => (
       <div className="space-y-4">
         <p>Pour accepter l'invitation, le membre doit suivre ces étapes :</p>
         <video 
           className="w-full rounded-lg shadow-lg"
           controls
-          src="/step_03-le-membre-accepte-linvitation.mov"
+          src={`/step_03-le-membre-accepte-linvitation${device === 'mobile' ? '_mobile' : ''}.mp4`}
         >
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
@@ -52,13 +52,13 @@ const faqData = [
   },
   {
     question: "Comment attribuer une livraison ?",
-    answer: (
+    answer: (device: 'desktop' | 'mobile') => (
       <div className="space-y-4">
         <p>Pour attribuer une livraison, suivez ces étapes :</p>
         <video 
           className="w-full rounded-lg shadow-lg"
           controls
-          src="/step_04-attribue-la-livraison.mov"
+          src={`/step_04-attribuer-la-livraison${device === 'mobile' ? '_mobile' : ''}.mp4`}
         >
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
@@ -67,13 +67,13 @@ const faqData = [
   },
   {
     question: "Comment valider un dépôt ?",
-    answer: (
+    answer: (device: 'desktop' | 'mobile') => (
       <div className="space-y-4">
         <p>Pour valider un dépôt, suivez ces étapes :</p>
         <video 
           className="w-full rounded-lg shadow-lg"
           controls
-          src="/step_05-validation-du-depot.mov"
+          src={`/step_05-validation-du-depot${device === 'mobile' ? '_mobile' : ''}.mp4`}
         >
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
@@ -84,6 +84,7 @@ const faqData = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [device, setDevice] = useState<'desktop' | 'mobile'>('desktop');
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -95,6 +96,29 @@ export default function FAQ() {
           <p className="mt-4 text-lg text-gray-500">
             Découvrez comment utiliser notre plateforme pour organiser vos collectes de zakat
           </p>
+        </div>
+
+        <div className="mt-8 flex justify-center space-x-4">
+          <button
+            onClick={() => setDevice('desktop')}
+            className={`px-4 py-2 rounded-md ${
+              device === 'desktop'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            Version Desktop
+          </button>
+          <button
+            onClick={() => setDevice('mobile')}
+            className={`px-4 py-2 rounded-md ${
+              device === 'mobile'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            Version Mobile
+          </button>
         </div>
 
         <div className="mt-12 space-y-4">
@@ -140,7 +164,7 @@ export default function FAQ() {
                     transition={{ duration: 0.3 }}
                     className="px-6 pb-4"
                   >
-                    {faq.answer}
+                    {faq.answer(device)}
                   </motion.div>
                 )}
               </AnimatePresence>
