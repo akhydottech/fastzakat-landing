@@ -50,12 +50,12 @@ jobs:
     - name: Build the Docker image with multiple tags
       run: |
         docker build . \
-          -t ghcr.io/${{ github.repository_owner }}/fastzakat-web:${{ github.ref_name }} \
-          -t ghcr.io/${{ github.repository_owner }}/fastzakat-web:latest \
-          -t ghcr.io/${{ github.repository_owner }}/fastzakat-web:${{ github.sha }} \
+          -t ghcr.io/${{ github.repository_owner }}/fastzakat-landing:${{ github.ref_name }} \
+          -t ghcr.io/${{ github.repository_owner }}/fastzakat-landing:latest \
+          -t ghcr.io/${{ github.repository_owner }}/fastzakat-landing:${{ github.sha }} \
           --build-arg APP_URL=${{ vars.FAST_ZAKAT_APP_URL }}
     - name: Push the Docker Images
       run: |
-        docker push ghcr.io/${{ github.repository_owner }}/fastzakat-web:${{ github.ref_name }}
-        docker push ghcr.io/${{ github.repository_owner }}/fastzakat-web:latest
-        docker push ghcr.io/${{ github.repository_owner }}/fastzakat-web:${{ github.sha }}
+        docker push ghcr.io/${{ github.repository_owner }}/fastzakat-landing:${{ github.ref_name }}
+        docker push ghcr.io/${{ github.repository_owner }}/fastzakat-landing:latest
+        docker push ghcr.io/${{ github.repository_owner }}/fastzakat-landing:${{ github.sha }}
